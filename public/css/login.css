@@ -1,0 +1,163 @@
+/*university style*/
+.bgimage-container {
+    display: flex;
+    justify-content: center;
+}
+
+.wholelogin {
+    background-color: white;
+    width: 400px;
+    position: fixed;
+    top: 245px;
+    left: 530px;
+    z-index: 1;
+}
+
+.study {
+    width: 1400px;
+    height: 900px;
+    background-image: url("https://hosting.photobucket.com/images/i/claytonkwok/5.jpg?width=1920&height=1080&fit=bounds");
+    filter: blur(4px);
+    -webkit-filter: blur(4px);
+    background-position: center;
+    background-size: cover;
+    z-index: 0;
+}
+
+body {
+    color: black;
+
+}
+
+.firstpage {
+    background-color: white;
+
+}
+
+.logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+}
+
+.logo img {
+    width: 179px;
+    height: 53px;
+}
+
+.logo h5 {
+    font-style: italic;
+}
+
+.login-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.login {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid grey;
+    width: 300px;
+    padding: 30px;
+    border: 3px solid #F8F9FA;
+    margin-top: 20px;
+    margin-bottom: 50px;
+
+}
+
+.loginchild {
+    margin-top: 20px;
+}
+
+.email p {
+    margin: 0;
+}
+
+.password p {
+    margin: 0;
+}
+
+.email,
+.password {
+    margin-bottom: 10px;
+}
+
+@media only screen and (max-width:576px) {
+
+
+    .bgimage-container {
+        display: none;
+
+    }
+
+    .wholelogin {
+        width: 100%;
+        position: static
+    }
+
+    body {
+        color: black;
+
+    }
+
+    .firstpage {
+        background-color: white;
+
+    }
+
+    .logo {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 50px;
+    }
+
+    .logo img {
+        width: 179px;
+        height: 53px;
+    }
+
+    .logo h5 {
+        font-style: italic;
+    }
+
+    .login-container {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    .login {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        border: 1px solid grey;
+        width: 300px;
+        padding: 30px;
+        border: 3px solid #F8F9FA;
+        margin-top: 20px;
+        margin-bottom: 50px;
+
+    }
+
+    .loginchild {
+        margin-top: 20px;
+    }
+
+    .email p {
+        margin: 0;
+    }
+
+    .password p {
+        margin: 0;
+    }
+
+    .email,
+    .password {
+        margin-bottom: 10px;
+    }
+}

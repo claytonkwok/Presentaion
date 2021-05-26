@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>To-do-list</title>
+    <!--meta link-->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!--googlefont-->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
+    <!--font awesome-->
+    <script src="https://kit.fontawesome.com/47df78a584.js" crossorigin="anonymous"></script>
+    <!--bootstrap-css-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!--css-->
+    <link rel="stylesheet" href="css/mainpage.css" type="text/css">
+    <!--bootstrapjs-->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <!--page after log in successfully-->
+    <section class="mainpage">
+
+
+        <!--navbar-->
+
+        <div>
+            <nav class="navbar navbar-expand-lg navbar-light bg-white">
+                <a class="navbar-brand" href="#">
+                    <img src="https://instructure-uploads-pdx.s3.us-west-2.amazonaws.com/account_148410000000000001/attachments/1341/Generation%20logo.png" width="150" height="30" class="d-inline-block align-top" alt="">
+
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                      <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item ">
+                            <a class="nav-link" href="#">Search<span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Notification</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/">Log out</a>
+                        </li>
+
+                    </ul>
+
+                </div>
+            </nav>
+        </div>
+        <!-- to-do-list content -->
+
+        <div class="container-fluid">
+            <div class="row">
+                <!--first col-->
+                <div class="col-lg-3 col-md-4 col-sm-6 col-12 vercol">
+                    <div class="row card-titlees">
+                        <span class="card-title-word">To-do-list</span>
+                        <div class="dropdown">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a class="dropdown-item" href="/todolist">Add card</a>
+                                <form action="/donetodolist" method="post">
+                                    <button class="dropdown-item" type="submit" >Done</button>
+                                </form>
+                                <form action="/deletetodolist" method="post">
+                                    <button class="dropdown-item" type="submit" >Delete</button>
+                                </form>
+                                <form action="/deletealltodolist" method="post">
+                                    <button class="dropdown-item" type="submit" >Delete All</button>
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+                    <% toDoList.forEach(function(detail){%>
+                    <% let a =( Math.floor(Math.random()*5) +1) %>
+                    <div class="row card-itemss colour<%=a %>">
+                        <div class="name-description">
+                            <div>
+                                <span class="name"><%=detail.toDoListName %></span>
+                            </div>
+                            <div>
+                                <span class="description"><%=detail.toDoListDescription.substring(0,55)%></span>
+                            </div>
+                        </div>
+                        <div class="duedate-assignedto">
+                            <div class="usericon">
+                                <span class="name"><%=detail.toDoListEmail.substring(0,12) %>...</span>
+                                <i class="fas fa-plus-circle add"></i>
+                            </div>
+                            <div class="duedate">
+                                <button type="button" class="btn btn-danger"> <i class="far fa-bell"></i><%=detail.toDoListDueDate.substring(0,10) %></button>
+                            </div>
+                        </div>
+                    </div>
+                    <% }) %>
+
+                    <div class="row additem">
+                        <a href="/todolist"><button type="button" class="btn btn-light btn-sm btn-block"><i class="fas fa-plus"></i>Add new task</button></a>
+                    </div>
+
+                </div>
+                <!--second col-->
+                <div class="col-lg-3 col-md-4 col-sm-6 col-12 vercol">
+                    <div class="row card-titlees">
+                        <span class="card-title-word">In progress</span>
+                        <div class="dropdown">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a class="dropdown-item" href="/todolist">Add card</a>
+                                <form action="/doneinprogress" method="post">
+                                    <button class="dropdown-item" type="submit" >Done</button>
+                                </form>
+                                <form action="/deleteinprogress" method="post">
+                                    <button class="dropdown-item" type="submit" >Delete</button>
+                                </form>
+                                <form action="/deleteallinprogess" method="post">
+                                    <button class="dropdown-item" type="submit" >Delete All</button>
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+                    <% inProgress.forEach(function(detail){%>
+                    <% let a =( Math.floor(Math.random()*5) +1) %>
+                    <div class="row card-itemss colour<%=a %>">
+                        <div class="name-description">
+                            <div>
+                                <span class="name"><%=detail.inProgressName %></span>
+                            </div>
+                            <div>
+                                <span class="description"><%=detail.inProgressDescription.substring(0,55)%></span>
+                            </div>
+                        </div>
+                        <div class="duedate-assignedto">
+                            <div class="usericon">
+                                <span class="name"><%=detail.inProgressEmail.substring(0,12) %>...</span>
+                                <i class="fas fa-plus-circle add"></i>
+                            </div>
+                            <div class="duedate">
+                                <button type="button" class="btn btn-warning"> <i class="fas fa-spinner"></i><%=detail.inProgressDueDate.substring(0,10) %></button>
+                            </div>
+                        </div>
+                    </div>
+                    <% }) %>
+
+                    <div class="row additem">
+                        <a href="/inprogress"><button type="button" class="btn btn-light btn-sm btn-block"><i class="fas fa-plus"></i>Add new task</button></a>
+                    </div>
+
+                </div>
+                <!--Third col-->
+                <div class="col-lg-3 col-md-4 col-sm-6 col-12 vercol">
+                    <div class="row card-titlees">
+                        <span class="card-title-word">Review</span>
+                        <div class="dropdown">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a class="dropdown-item" href="/todolist">Add card</a>
+                                <form action="/donetodolist" method="post">
+                                    <button class="dropdown-item" type="submit" >Done</button>
+                                </form>
+                                <form action="/deletetodolist" method="post">
+                                    <button class="dropdown-item" type="submit" >Delete</button>
+                                </form>
+                                <form action="/deletealltodolist" method="post">
+                                    <button class="dropdown-item" type="submit" >Delete All</button>
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+                    <% toDoList.forEach(function(detail){%>
+                    <% let a =( Math.floor(Math.random()*5) +1) %>
+                    <div class="row card-itemss colour<%=a %>">
+                        <div class="name-description">
+                            <div>
+                                <span class="name"><%=detail.toDoListName %></span>
+                            </div>
+                            <div>
+                                <span class="description"><%=detail.toDoListDescription.substring(0,55)%></span>
+                            </div>
+                        </div>
+                        <div class="duedate-assignedto">
+                            <div class="usericon">
+                                <span class="name"><%=detail.toDoListEmail.substring(0,12) %>...</span>
+                                <i class="fas fa-plus-circle add"></i>
+                            </div>
+                            <div class="duedate">
+                                <button type="button" class="btn btn-danger"> <i class="far fa-bell"></i><%=detail.toDoListDueDate.substring(0,10) %></button>
+                            </div>
+                        </div>
+                    </div>
+                    <% }) %>
+
+                    <div class="row additem">
+                        <a href="/todolist"><button type="button" class="btn btn-light btn-sm btn-block"><i class="fas fa-plus"></i>Add new task</button></a>
+                    </div>
+
+                </div>
+                <!--Forth col-->
+                <div class="col-lg-3 col-md-4 col-sm-6 col-12 vercol">
+                    <div class="row card-titlees">
+                        <span class="card-title-word">Done</span>
+                        <div class="dropdown">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        
+                                      </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <a class="dropdown-item" href="/leungni.github.io/Project-to-do-list/additem.html">Add card</a>
+                                <a class="dropdown-item" href="#">Copy list...</a>
+                                <a class="dropdown-item" href="#">Sorted by creation date</a>
+                                <a class="dropdown-item" href="#">Sorted by Card name (in alphabetical order)</a>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row card-itemss colour3">
+                        <div class="name-description">
+                            <div>
+                                <span class="name">Resume </span>
+                            </div>
+                            <div>
+                                <span class="description">introduction profile draft</span>
+                            </div>
+                        </div>
+                        <div class="duedate-assignedto">
+                            <div class="usericon">
+                                <img src=./images/3.png>
+                                <img src=./images/4.png>
+                                <i class="fas fa-plus-circle add"></i>
+                            </div>
+                            <div class="duedate">
+                                <button type="button" class="btn btn-success"> <i class="far fa-check-circle"></i>15Apr</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row additem">
+                        <a href="./additem.html"><button type="button" class="btn btn-light btn-sm btn-block"><i class="fas fa-plus"></i>Add new task</button></a>
+                    </div>
+
+
+                </div>
+            </div>
+
+
+        </div>
+        <div class="additemicon">
+            <span class="icon-position"><i class="fas fa-plus-circle fa-3x"></i></span>
+        </div>
+
+    </section>
+</body>
+
+</html>
