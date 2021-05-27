@@ -30,7 +30,9 @@ app.post('/' ,function (req,res) {
 app.get('/mainpage',function (req,res) {
     res.render('mainpage',{
         toDoList : toDoLists,
-        inProgress : inProgresses
+        inProgress : inProgresses,
+        review : reviews,
+        done: totaldone
     })
 })
 app.post('/deletealltodolist',function (req,res) {
@@ -66,6 +68,33 @@ app.post('/doneinprogress',function (req,res) {
     console.log(totaldone);
     res.redirect('/mainpage')
 })
+app.post('/deleteallreview',function (req,res) {
+    reviews=[]
+    res.redirect('/mainpage')
+})
+
+app.post('/deletereview',function (req,res) {
+    reviews.pop();
+    res.redirect('/mainpage')
+})
+
+app.post('/donereview',function (req,res) {
+    let done=reviews.pop();
+    totaldone.push(done);
+    console.log(totaldone);
+    res.redirect('/mainpage')
+})
+
+app.post('/deletealldone',function (req,res) {
+    totaldone=[]
+    res.redirect('/mainpage')
+})
+
+app.post('/deletedone',function (req,res) {
+    totaldone.pop();
+    res.redirect('/mainpage')
+})
+
 
 
 app.get('/todolist',function (req,res) {
@@ -101,7 +130,16 @@ app.get('/review', function (req,res){
     res.render('review')
 })
 
-
+app.post('/review',function (req,res){
+    const review = {
+        reviewName:req.body.reviewName,
+        reviewDescription:req.body.reviewDescription,
+        reviewDueDate:req.body.reviewDueDate,
+        reviewEmail:req.body.reviewEmail
+    }
+    reviews.push(review);
+    res.redirect('/mainpage')
+})
 
 
 

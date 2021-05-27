@@ -120,7 +120,7 @@
                                         
                             </button>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <a class="dropdown-item" href="/todolist">Add card</a>
+                                <a class="dropdown-item" href="/inprogress">Add card</a>
                                 <form action="/doneinprogress" method="post">
                                     <button class="dropdown-item" type="submit" >Done</button>
                                 </form>
@@ -171,45 +171,45 @@
                                         
                             </button>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <a class="dropdown-item" href="/todolist">Add card</a>
-                                <form action="/donetodolist" method="post">
+                                <a class="dropdown-item" href="/review">Add card</a>
+                                <form action="/donereview" method="post">
                                     <button class="dropdown-item" type="submit" >Done</button>
                                 </form>
-                                <form action="/deletetodolist" method="post">
+                                <form action="/deletereview" method="post">
                                     <button class="dropdown-item" type="submit" >Delete</button>
                                 </form>
-                                <form action="/deletealltodolist" method="post">
+                                <form action="/deleteallreview" method="post">
                                     <button class="dropdown-item" type="submit" >Delete All</button>
                                 </form>
 
                             </div>
                         </div>
                     </div>
-                    <% toDoList.forEach(function(detail){%>
+                    <% review.forEach(function(detail){%>
                     <% let a =( Math.floor(Math.random()*5) +1) %>
                     <div class="row card-itemss colour<%=a %>">
                         <div class="name-description">
                             <div>
-                                <span class="name"><%=detail.toDoListName %></span>
+                                <span class="name"><%=detail.reviewName %></span>
                             </div>
                             <div>
-                                <span class="description"><%=detail.toDoListDescription.substring(0,55)%></span>
+                                <span class="description"><%=detail.reviewDescription.substring(0,55)%></span>
                             </div>
                         </div>
                         <div class="duedate-assignedto">
                             <div class="usericon">
-                                <span class="name"><%=detail.toDoListEmail.substring(0,12) %>...</span>
+                                <span class="name"><%=detail.reviewEmail.substring(0,12) %>...</span>
                                 <i class="fas fa-plus-circle add"></i>
                             </div>
                             <div class="duedate">
-                                <button type="button" class="btn btn-danger"> <i class="far fa-bell"></i><%=detail.toDoListDueDate.substring(0,10) %></button>
+                                <button type="button" class="btn btn-info"> <i class="far fa-file-pdf"></i><%=detail.reviewDueDate.substring(0,10) %></button>
                             </div>
                         </div>
                     </div>
                     <% }) %>
 
                     <div class="row additem">
-                        <a href="/todolist"><button type="button" class="btn btn-light btn-sm btn-block"><i class="fas fa-plus"></i>Add new task</button></a>
+                        <a href="/review"><button type="button" class="btn btn-light btn-sm btn-block"><i class="fas fa-plus"></i>Add new task</button></a>
                     </div>
 
                 </div>
@@ -220,49 +220,97 @@
                         <div class="dropdown">
                             <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         
-                                      </button>
+                            </button>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <a class="dropdown-item" href="/leungni.github.io/Project-to-do-list/additem.html">Add card</a>
-                                <a class="dropdown-item" href="#">Copy list...</a>
-                                <a class="dropdown-item" href="#">Sorted by creation date</a>
-                                <a class="dropdown-item" href="#">Sorted by Card name (in alphabetical order)</a>
+                              
+                              
+                                <form action="/deletedone" method="post">
+                                    <button class="dropdown-item" type="submit" >Delete</button>
+                                </form>
+                                <form action="/deletealldone" method="post">
+                                    <button class="dropdown-item" type="submit" >Delete All</button>
+                                </form>
 
                             </div>
                         </div>
                     </div>
-                    <div class="row card-itemss colour3">
-                        <div class="name-description">
-                            <div>
-                                <span class="name">Resume </span>
+                    <% done.forEach(function(detail){%>
+                        <% if(Object.keys(detail)[0]=== 'toDoListName'){ %>
+                            <% let a =( Math.floor(Math.random()*5) +1) %>
+                            <div class="row card-itemss colour<%=a %>">
+                                <div class="name-description">
+                                    <div>
+                                        <span class="name"><%=detail.toDoListName %></span>
+                                    </div>
+                                    <div>
+                                        <span class="description"><%=detail.toDoListDescription.substring(0,55)%></span>
+                                    </div>
+                                </div>
+                                <div class="duedate-assignedto">
+                                    <div class="usericon">
+                                        <span class="name"><%=detail.toDoListEmail.substring(0,12) %>...</span>
+                                        <i class="fas fa-plus-circle add"></i>
+                                    </div>
+                                    <div class="duedate">
+                                        <button type="button" class="btn btn-success"> <i class="far fa-check-circle"></i><%=detail.toDoListDueDate.substring(0,10) %></button>
+                                    </div>
+                                </div>
                             </div>
-                            <div>
-                                <span class="description">introduction profile draft</span>
-                            </div>
-                        </div>
-                        <div class="duedate-assignedto">
-                            <div class="usericon">
-                                <img src=./images/3.png>
-                                <img src=./images/4.png>
-                                <i class="fas fa-plus-circle add"></i>
-                            </div>
-                            <div class="duedate">
-                                <button type="button" class="btn btn-success"> <i class="far fa-check-circle"></i>15Apr</button>
-                            </div>
-                        </div>
-                    </div>
 
-                    <div class="row additem">
-                        <a href="./additem.html"><button type="button" class="btn btn-light btn-sm btn-block"><i class="fas fa-plus"></i>Add new task</button></a>
-                    </div>
+                        <% } else if(Object.keys(detail)[0]=== 'inProgressName'){ %>
+                            <% let a =( Math.floor(Math.random()*5) +1) %>
+                            <div class="row card-itemss colour<%=a %>">
+                                <div class="name-description">
+                                    <div>
+                                        <span class="name"><%=detail.inProgressName %></span>
+                                    </div>
+                                    <div>
+                                        <span class="description"><%=detail.inProgressDescription.substring(0,55)%></span>
+                                    </div>
+                                </div>
+                                <div class="duedate-assignedto">
+                                    <div class="usericon">
+                                        <span class="name"><%=detail.inProgressEmail.substring(0,12) %>...</span>
+                                        <i class="fas fa-plus-circle add"></i>
+                                    </div>
+                                    <div class="duedate">
+                                        <button type="button" class="btn btn-success"> <i class="far fa-check-circle"></i><%=detail.inProgressDueDate.substring(0,10) %></button>
+                                    </div>
+                                </div>
+                            </div>
+
+                        <% } else if(Object.keys(detail)[0]=== 'reviewName') { %>
+                            <% let a =( Math.floor(Math.random()*5) +1) %>
+                            <div class="row card-itemss colour<%=a %>">
+                                <div class="name-description">
+                                    <div>
+                                        <span class="name"><%=detail.reviewName %></span>
+                                    </div>
+                                    <div>
+                                        <span class="description"><%=detail.reviewDescription.substring(0,55)%></span>
+                                    </div>
+                                </div>
+                                <div class="duedate-assignedto">
+                                    <div class="usericon">
+                                        <span class="name"><%=detail.reviewEmail.substring(0,12) %>...</span>
+                                        <i class="fas fa-plus-circle add"></i>
+                                    </div>
+                                    <div class="duedate">
+                                        <button type="button" class="btn btn-success"> <i class="far fa-check-circle"></i></i><%=detail.reviewDueDate.substring(0,10) %></button>
+                                    </div>
+                                </div>
+                            </div>
+
+                        <% } %>
+
+                            
+                    <% }) %>
 
 
                 </div>
             </div>
 
 
-        </div>
-        <div class="additemicon">
-            <span class="icon-position"><i class="fas fa-plus-circle fa-3x"></i></span>
         </div>
 
     </section>
