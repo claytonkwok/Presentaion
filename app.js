@@ -23,7 +23,10 @@ app.get('/',function (req,res){
 })
 
 app.post('/' ,function (req,res) {
-    res.redirect('/mainpage')
+    if (req.body.username==="todolist@generation.com"&&req.body.password==="28052021"){
+        res.redirect('/mainpage')
+    }
+    
 })
 
 
