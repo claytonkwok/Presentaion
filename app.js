@@ -1,14 +1,15 @@
+// library
 const express = require("express");
 const bodyParser = require("body-parser");
 const ejs = require("ejs");
 const _ = require('lodash');
 const $ = require('jquery');
-const { get } = require("lodash");
 
+// arrary store data
 let toDoLists=[];
 let inProgresses=[];
 let reviews=[];
-let totaldone=[]
+let totaldone=[];
 
 const app = express();
 
@@ -18,17 +19,20 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
 
+// login page
+
 app.get('/',function (req,res){
     res.render('login')
 })
 
 app.post('/' ,function (req,res) {
-    if (req.body.username==="todolist@generation.com"&&req.body.password==="28052021"){
+    if (req.body.username==="todolist@generation.com"&& req.body.password==="28052021"){
         res.redirect('/mainpage')
     }
     
 })
 
+// mainpage
 
 app.get('/mainpage',function (req,res) {
     res.render('mainpage',{
@@ -37,6 +41,7 @@ app.get('/mainpage',function (req,res) {
         review : reviews,
         done: totaldone
     })
+    console.log(toDoLists)
 })
 app.post('/deletealltodolist',function (req,res) {
     toDoLists=[]
@@ -99,6 +104,8 @@ app.post('/deletedone',function (req,res) {
 })
 
 
+// todolist add item page
+
 
 app.get('/todolist',function (req,res) {
     res.render('todolist')    
@@ -114,6 +121,8 @@ app.post('/todolist',function (req,res){
     res.redirect('/mainpage')
 })
 
+// inprogress add item page
+
 app.get('/inprogress',function (req,res){
     res.render('inprogress')
 })
@@ -127,6 +136,9 @@ app.post('/inprogress',function (req,res){
     inProgresses.push(inProgress);
     res.redirect('/mainpage')
 })
+
+
+// reviews add item page
 
 
 app.get('/review', function (req,res){
@@ -144,7 +156,16 @@ app.post('/review',function (req,res){
     res.redirect('/mainpage')
 })
 
+//check
 
+app.get('/check/:title',function (req,res){
+    
+    res.render('check')
+})
+
+
+
+// port
 
 app.listen(3000, function() {
     console.log("Server started on port 3000");
